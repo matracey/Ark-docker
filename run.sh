@@ -66,7 +66,7 @@ if [ $CRONNUMBER -gt 0 ]; then
 
 	# Generate the crontab with the necessary environment variables added.
 (
-	sudo cat << EOF
+	sudo sh -c 'cat << EOF
 SESSIONNAME=$SESSIONNAME
 SERVERMAP=$SERVERMAP
 SERVERPASSWORD=$SERVERPASSWORD
@@ -81,7 +81,7 @@ TZ=$TZ
 UID=$UID
 GID=$GID
 EOF
-) >> /etc/crontab
+) >> /etc/crontab'
 	cat /ark/crontab >> /tmp/steam.crontab
 
 	# We load the crontab file if it exist.
