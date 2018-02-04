@@ -66,7 +66,7 @@ if [ $CRONNUMBER -gt 0 ]; then
 
 	# Generate the crontab with the necessary environment variables added.
 (
-	cat << EOF
+	sudo cat << EOF
 SESSIONNAME=$SESSIONNAME
 SERVERMAP=$SERVERMAP
 SERVERPASSWORD=$SERVERPASSWORD
