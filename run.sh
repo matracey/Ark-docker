@@ -65,23 +65,22 @@ if [ $CRONNUMBER -gt 0 ]; then
 	echo "Loading crontab..."
 
 	# Generate the crontab with the necessary environment variables added.
-	(
-		cat <<EOF
-SESSIONNAME=$SESSIONNAME
-SERVERMAP=$SERVERMAP
-SERVERPASSWORD=$SERVERPASSWORD
-ADMINPASSWORD=$ADMINPASSWORD
-SERVERPORT=$SERVERPORT
-STEAMPORT=$STEAMPORT
-BACKUPONSTART=$BACKUPONSTART
-UPDATEONSTART=$UPDATEONSTART
-BACKUPONSTOP=$BACKUPONSTOP
-WARNONSTOP=$WARNONSTOP
-TZ=$TZ
-UID=$UID
-GID=$GID
-EOF
-	) > /tmp/steam.crontab
+( cat <<EOF
+export SESSIONNAME=$SESSIONNAME
+export SERVERMAP=$SERVERMAP
+export SERVERPASSWORD=$SERVERPASSWORD
+export ADMINPASSWORD=$ADMINPASSWORD
+export SERVERPORT=$SERVERPORT
+export STEAMPORT=$STEAMPORT
+export BACKUPONSTART=$BACKUPONSTART
+export UPDATEONSTART=$UPDATEONSTART
+export BACKUPONSTOP=$BACKUPONSTOP
+export WARNONSTOP=$WARNONSTOP
+export TZ=$TZ
+export UID=$UID
+export GID=$GID
+EOF ) > /tmp/.env
+	cat "* * * * * . /tmp/.env" >> /tmp/steam.crontab
 	cat /ark/crontab >> /tmp/steam.crontab
 
 	# We load the crontab file if it exist.
