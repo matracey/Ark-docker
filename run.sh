@@ -65,7 +65,8 @@ if [ $CRONNUMBER -gt 0 ]; then
 	echo "Loading crontab..."
 
 	# Generate the crontab with the necessary environment variables added.
-( cat <<EOF
+(
+	cat <<EOF
 export SESSIONNAME=$SESSIONNAME
 export SERVERMAP=$SERVERMAP
 export SERVERPASSWORD=$SERVERPASSWORD
@@ -79,8 +80,9 @@ export WARNONSTOP=$WARNONSTOP
 export TZ=$TZ
 export UID=$UID
 export GID=$GID
-EOF ) > /tmp/.env
-	cat "* * * * * . /tmp/.env" >> /tmp/steam.crontab
+EOF
+) > /tmp/.env
+	echo "* * * * * . /tmp/.env" >> /tmp/steam.crontab
 	cat /ark/crontab >> /tmp/steam.crontab
 
 	# We load the crontab file if it exist.
