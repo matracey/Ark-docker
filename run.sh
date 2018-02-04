@@ -80,6 +80,7 @@ export WARNONSTOP=$WARNONSTOP
 export TZ=$TZ
 export UID=$UID
 export GID=$GID
+export serverMap=$SERVERMAP
 EOF
 ) > /tmp/.env
 	echo "* * * * * . /tmp/.env" >> /tmp/steam.crontab
