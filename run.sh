@@ -65,8 +65,9 @@ if [ $CRONNUMBER -gt 0 ]; then
 	echo "Loading crontab..."
 
 	# Generate the crontab with the necessary environment variables added.
+sudo sh -c '
 (
-	sudo sh -c 'cat << EOF
+	cat << EOF
 SESSIONNAME=$SESSIONNAME
 SERVERMAP=$SERVERMAP
 SERVERPASSWORD=$SERVERPASSWORD
